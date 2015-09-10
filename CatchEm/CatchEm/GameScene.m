@@ -9,6 +9,7 @@
 #import "GameScene.h"
 #import "GameOverScene.h"
 #import "GameOver2.h"
+#import "cutScene2.h"
 
 // add some properties to call for spriteNodes and sounds
 @interface GameScene ()<SKPhysicsContactDelegate>
@@ -20,6 +21,9 @@
     NSInteger scoreCount;
     NSInteger countDownTimer;
     SKLabelNode *countDown;
+    SKSpriteNode *cut;
+    SKSpriteNode *cutWin;
+    SKSpriteNode *cutLoss;
 }
 @property (nonatomic) SKSpriteNode * myBasket;
 @property (nonatomic) SKSpriteNode * myEgg;
@@ -66,7 +70,7 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         scoreTextures = @[firework1,firework2,firework3,firework4];
         hudScore.text=@"Score = 0";
         CGPoint location = CGPointMake (CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame));
-        [self createTimerWithDuration:20 position:location andSize:24.0];
+        [self createTimerWithDuration:120 position:location andSize:24.0];
     }
     return self;
 }
@@ -136,6 +140,8 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
 {
     SKPhysicsBody *firstBody;
     SKPhysicsBody *secondBody;
+    CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
+    CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
     
     if (contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask)
     {
@@ -154,10 +160,41 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         [self egg:(SKSpriteNode *)firstBody.node didCollideWithBasket:(SKSpriteNode *)secondBody.node];
         [self keepScore:10];
         
-        if(scoreCount==100){
-            [self gameOver];
+        if(scoreCount==250){
+            spriteView.paused = YES;
+            cut = [SKSpriteNode spriteNodeWithImageNamed:@"cutScene2.png"];
+            cut.size =CGSizeMake(screenWidth, screenHeight);
+            cut.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+            cut.name = @"cut2";
+            [self addChild:cut];
+            SKSpriteNode *start = [SKSpriteNode spriteNodeWithImageNamed:@"Go-Button.png"];
+            start.position = CGPointMake(CGRectGetMidX(self.frame)+225, CGRectGetMidY(self.frame)- 225);
+            start.name = @"Go";
+            [self addChild:start];
+            
+
         }else if (countDownTimer == 0){
-            [self gameOver2];
+            spriteView.paused = YES;
+            cutLoss = [SKSpriteNode spriteNodeWithImageNamed:@"cutscene3loss.png"];
+            cutLoss.size =CGSizeMake(screenWidth, screenHeight);
+            cutLoss.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+            cutLoss.name = @"cutLoss";
+            [self addChild:cutLoss];
+            SKSpriteNode *start = [SKSpriteNode spriteNodeWithImageNamed:@"Go-Button.png"];
+            start.position = CGPointMake(CGRectGetMidX(self.frame)+225, CGRectGetMidY(self.frame)- 225);
+            start.name = @"Go2";
+            [self addChild:start];
+        }else if(scoreCount==500){
+            spriteView.paused = YES;
+            cutWin = [SKSpriteNode spriteNodeWithImageNamed:@"cutScene3.png"];
+            cutWin.size =CGSizeMake(screenWidth, screenHeight);
+            cutWin.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+            cutWin.name = @"cutWin";
+            [self addChild:cutWin];
+            SKSpriteNode *start = [SKSpriteNode spriteNodeWithImageNamed:@"Go-Button.png"];
+            start.position = CGPointMake(CGRectGetMidX(self.frame)+225, CGRectGetMidY(self.frame)- 225);
+            start.name = @"Go3";
+            [self addChild:start];
         }
         
     }else {
@@ -165,8 +202,6 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
     }
     
 }
-
-
 
 -(void)keepScore:(NSInteger)points{
     scoreCount += points;
@@ -227,8 +262,20 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
     if ([node.name isEqualToString:@"myPauseButton"]) {
         [self paused];
         NSLog(@"Hit Pause");
-    }else{
-        //nothing
+    }else if ([node.name isEqualToString:@"Go"]){
+        [node removeFromParent];
+        [cut removeFromParent];
+        spriteView.paused = NO;
+    }else if ([node.name isEqualToString:@"Go2"]){
+        [node removeFromParent];
+        [cutLoss removeFromParent];
+        spriteView.paused = NO;
+        [self gameOver2];
+    }else if ([node.name isEqualToString:@"Go3"]){
+        [node removeFromParent];
+        [cutWin removeFromParent];
+        spriteView.paused = NO;
+        [self gameOver];
     }
 }
 
@@ -252,6 +299,12 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
     SKScene * gameOverScene = [[GameOver2 alloc] initWithSize:self.size];
     SKTransition *doors = [SKTransition flipVerticalWithDuration:0.5];
     [self.view presentScene:gameOverScene transition:doors];
+}
+
+-(void)cutScene2{
+    SKScene * cut2 = [[cutScene2 alloc] initWithSize:self.size];
+    SKTransition *doors = [SKTransition flipVerticalWithDuration:0.5];
+    [self.view presentScene:cut2 transition:doors];
 }
 // method for last update
 - (void)timeSinceLastUpdate:(CFTimeInterval)timeSinceLast {

@@ -8,6 +8,7 @@
 
 #import "MainMenu.h"
 #import "GameScene.h"
+#import "cutScene1.h"
 
 @implementation MainMenu
 
@@ -37,7 +38,7 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
     if ([node.name isEqualToString:@"Start"]) {
-        SKScene *myScene = [[GameScene alloc] initWithSize:self.size];
+        SKScene *myScene = [[cutScene1 alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition flipVerticalWithDuration:0.5];
         [self.view presentScene:myScene transition:transition];
     }
