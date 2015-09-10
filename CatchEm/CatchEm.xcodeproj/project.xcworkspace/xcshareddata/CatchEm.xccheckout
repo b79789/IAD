@@ -7,34 +7,34 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>3931ACF6-2C25-471B-B4C3-849419964F75</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>CatchEm</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>6960833EAEFCAFA1BB89450204E220FF63F0A10C</key>
-		<string>https://github.com/b79789/MGD2.git</string>
+		<key>618DD65CE8E1F123EF831D4D0C63C868B70B0805</key>
+		<string>https://github.com/b79789/IAD.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>CatchEm/CatchEm.xcodeproj/project.xcworkspace</string>
+	<string>CatchEm/CatchEm.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>6960833EAEFCAFA1BB89450204E220FF63F0A10C</key>
+		<key>618DD65CE8E1F123EF831D4D0C63C868B70B0805</key>
 		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/b79789/MGD2.git</string>
+	<string>https://github.com/b79789/IAD.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>6960833EAEFCAFA1BB89450204E220FF63F0A10C</string>
+	<string>618DD65CE8E1F123EF831D4D0C63C868B70B0805</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>6960833EAEFCAFA1BB89450204E220FF63F0A10C</string>
+			<string>618DD65CE8E1F123EF831D4D0C63C868B70B0805</string>
 			<key>IDESourceControlWCCName</key>
-			<string>MGD2</string>
+			<string>IAD</string>
 		</dict>
 	</array>
 </dict>
