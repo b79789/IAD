@@ -10,6 +10,7 @@
 #import "GameOverScene.h"
 #import "GameOver2.h"
 #import "cutScene2.h"
+#import <GameKit/GameKit.h>
 
 // add some properties to call for spriteNodes and sounds
 @interface GameScene ()<SKPhysicsContactDelegate>
@@ -70,7 +71,7 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         scoreTextures = @[firework1,firework2,firework3,firework4];
         hudScore.text=@"Score = 0";
         CGPoint location = CGPointMake (CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame));
-        [self createTimerWithDuration:120 position:location andSize:24.0];
+        [self createTimerWithDuration:10 position:location andSize:24.0];
     }
     return self;
 }
@@ -160,7 +161,7 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         [self egg:(SKSpriteNode *)firstBody.node didCollideWithBasket:(SKSpriteNode *)secondBody.node];
         [self keepScore:10];
         
-        if(scoreCount==250){
+        if(scoreCount==50){
             spriteView.paused = YES;
             cut = [SKSpriteNode spriteNodeWithImageNamed:@"cutScene2.png"];
             cut.size =CGSizeMake(screenWidth, screenHeight);
@@ -184,9 +185,9 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
             start.position = CGPointMake(CGRectGetMidX(self.frame)+225, CGRectGetMidY(self.frame)- 225);
             start.name = @"Go2";
             [self addChild:start];
-        }else if(scoreCount==500){
+        }else if(scoreCount==120){
             spriteView.paused = YES;
-            cutWin = [SKSpriteNode spriteNodeWithImageNamed:@"cutScene3.png"];
+            cutWin = [SKSpriteNode spriteNodeWithImageNamed:@"cutscene3.png"];
             cutWin.size =CGSizeMake(screenWidth, screenHeight);
             cutWin.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
             cutWin.name = @"cutWin";
@@ -259,9 +260,10 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
     UITouch * touch = [touches anyObject];
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
+    
     if ([node.name isEqualToString:@"myPauseButton"]) {
         [self paused];
-        NSLog(@"Hit Pause");
+        
     }else if ([node.name isEqualToString:@"Go"]){
         [node removeFromParent];
         [cut removeFromParent];
@@ -270,12 +272,17 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         [node removeFromParent];
         [cutLoss removeFromParent];
         spriteView.paused = NO;
+        [self reportScores];
         [self gameOver2];
+        
     }else if ([node.name isEqualToString:@"Go3"]){
         [node removeFromParent];
         [cutWin removeFromParent];
         spriteView.paused = NO;
+        [self reportScores];
         [self gameOver];
+        
+        
     }
 }
 
@@ -293,6 +300,7 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
     SKScene * gameOverScene = [[GameOverScene alloc] initWithSize:self.size];
     SKTransition *doors = [SKTransition flipVerticalWithDuration:0.5];
     [self.view presentScene:gameOverScene transition:doors];
+    
 }
 
 -(void)gameOver2{
@@ -339,7 +347,7 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
     [self addChild: countDown];
     countDownTimer = seconds;
     SKAction *updateLabel = [SKAction runBlock:^{
-        countDown.text = [NSString stringWithFormat:@"Time: %ld", countDownTimer];
+        countDown.text = [NSString stringWithFormat:@"Time: %ld", (long)countDownTimer];
         --countDownTimer;
     }];
     SKAction *wait = [SKAction waitForDuration:1.0];
@@ -349,5 +357,15 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
     }];
 }
 
+
+-(void)reportScores{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setInteger:scoreCount forKey:[[GKLocalPlayer localPlayer]alias]];
+    GKScore *newScore = [[GKScore alloc] initWithLeaderboardIdentifier:@"Overall"];
+    newScore.value = [userDefaults integerForKey:[[GKLocalPlayer localPlayer]alias]];
+    [userDefaults synchronize];
+    [GKScore reportScores:@[newScore] withCompletionHandler:nil];
+    NSLog(@"Score reported ");
+}
 
 @end

@@ -43,6 +43,11 @@
 		38AB64AA1B8E0A2800300DDB /* catchemLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB64A91B8E0A2800300DDB /* catchemLogo.png */; };
 		38AB64AE1B8E0EAA00300DDB /* startButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB64AD1B8E0EAA00300DDB /* startButton.png */; };
 		38AB64B01B8E101500300DDB /* MainMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = 38AB64AF1B8E101500300DDB /* MainMenu.png */; };
+		38DF21B81BAB531900E32FB4 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF21B71BAB531900E32FB4 /* Social.framework */; };
+		38DF21BA1BAB532000E32FB4 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF21B91BAB532000E32FB4 /* Accounts.framework */; };
+		38DF21BC1BAB55CE00E32FB4 /* shareButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 38DF21BB1BAB55CE00E32FB4 /* shareButton.png */; };
+		38E7A3111BA7467600F23DBB /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38E7A3101BA7467600F23DBB /* GameKit.framework */; };
+		38E7A3191BA89EB300F23DBB /* leaderButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 38E7A3181BA89EB300F23DBB /* leaderButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +112,11 @@
 		38AB64A91B8E0A2800300DDB /* catchemLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = catchemLogo.png; sourceTree = "<group>"; };
 		38AB64AD1B8E0EAA00300DDB /* startButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startButton.png; sourceTree = "<group>"; };
 		38AB64AF1B8E101500300DDB /* MainMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MainMenu.png; sourceTree = "<group>"; };
+		38DF21B71BAB531900E32FB4 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		38DF21B91BAB532000E32FB4 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		38DF21BB1BAB55CE00E32FB4 /* shareButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shareButton.png; sourceTree = "<group>"; };
+		38E7A3101BA7467600F23DBB /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		38E7A3181BA89EB300F23DBB /* leaderButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaderButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +124,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38DF21BA1BAB532000E32FB4 /* Accounts.framework in Frameworks */,
+				38DF21B81BAB531900E32FB4 /* Social.framework in Frameworks */,
+				38E7A3111BA7467600F23DBB /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +143,9 @@
 		3879964A1B724A4F002AF433 = {
 			isa = PBXGroup;
 			children = (
+				38DF21B91BAB532000E32FB4 /* Accounts.framework */,
+				38DF21B71BAB531900E32FB4 /* Social.framework */,
+				38E7A3101BA7467600F23DBB /* GameKit.framework */,
 				387996551B724A4F002AF433 /* CatchEm */,
 				387996741B724A4F002AF433 /* CatchEmTests */,
 				387996541B724A4F002AF433 /* Products */,
@@ -211,7 +227,9 @@
 		387996811B724BC6002AF433 /* CatchemResources */ = {
 			isa = PBXGroup;
 			children = (
+				38E7A3181BA89EB300F23DBB /* leaderButton.png */,
 				387C69061BA1D9BA001D2CF0 /* cutScene2.png */,
+				38DF21BB1BAB55CE00E32FB4 /* shareButton.png */,
 				387C69071BA1D9BA001D2CF0 /* cutscene3.png */,
 				387C69081BA1D9BA001D2CF0 /* cutscene3loss.png */,
 				38AB64AF1B8E101500300DDB /* MainMenu.png */,
@@ -289,6 +307,7 @@
 				TargetAttributes = {
 					387996521B724A4F002AF433 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = LF449WWZZF;
 					};
 					387996701B724A4F002AF433 = {
 						CreatedOnToolsVersion = 6.4;
@@ -339,7 +358,9 @@
 				387996891B7255A3002AF433 /* scoreNumber.png in Resources */,
 				38AB64AE1B8E0EAA00300DDB /* startButton.png in Resources */,
 				387996981B7511EF002AF433 /* egg.png in Resources */,
+				38DF21BC1BAB55CE00E32FB4 /* shareButton.png in Resources */,
 				387996901B725994002AF433 /* catch.mp3 in Resources */,
+				38E7A3191BA89EB300F23DBB /* leaderButton.png in Resources */,
 				387C69191BA1DBF6001D2CF0 /* Go-Button.png in Resources */,
 				384961A11B8252E800A7112A /* SpriteAnimation.atlas in Resources */,
 				387C69051BA09313001D2CF0 /* cutScene1.png in Resources */,
@@ -499,9 +520,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CatchEm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -510,9 +534,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = CatchEm/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

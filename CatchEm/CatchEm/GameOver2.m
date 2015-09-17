@@ -8,7 +8,9 @@
 
 #import "GameOver2.h"
 #import "MainMenu.h"
-
+#import <GameKit/GameKit.h>
+#import <Social/Social.h>
+#import <Accounts/Accounts.h>
 
 @implementation GameOver2
 {
@@ -74,6 +76,11 @@
     [self addChild:endGameLabel4];
     [self addChild:endGameLabel5];
     [self addChild:myButton];
+    SKSpriteNode *share = [SKSpriteNode spriteNodeWithImageNamed:@"shareButton.png"];
+    share.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame)- 325);
+    share.name = @"Share";
+    share.zPosition=6;
+    [self addChild:share];
 
 }
 
@@ -87,8 +94,23 @@
         SKScene *myScene = [[MainMenu alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition flipVerticalWithDuration:0.5];
         [self.view presentScene:myScene transition:transition];
+    }else if ([node.name isEqualToString:@"Share"]){
+        NSLog(@"hit share");
+        
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        GKScore *newScore = [[GKScore alloc] initWithLeaderboardIdentifier:@"Overall"];
+        
+        newScore.value =[userDefaults integerForKey:[[GKLocalPlayer localPlayer]alias]];
+        NSString *myString = [[GKLocalPlayer localPlayer]alias];
+        if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+            SLComposeViewController *mypost= [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+            [mypost setInitialText:[NSString stringWithFormat:@ "%@ score is %lld in Catch'Em",myString,newScore.value]];
+            [self.view.window.rootViewController presentViewController:mypost animated:true completion:nil ];
+            NSLog(@"hit share code");
+        }
     }else{
-        //nothing
+        
     }
 }
 @end

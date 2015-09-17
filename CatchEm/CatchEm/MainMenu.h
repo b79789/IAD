@@ -7,7 +7,10 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <GameKit/GameKit.h>
 
-@interface MainMenu : SKScene
+
+@interface MainMenu : SKScene<GKGameCenterControllerDelegate>
+@property(assign, nonatomic) id< GKGameCenterControllerDelegate > gameCenterDelegate;
 
 @end
