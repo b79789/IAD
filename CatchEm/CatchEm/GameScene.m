@@ -71,7 +71,7 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         scoreTextures = @[firework1,firework2,firework3,firework4];
         hudScore.text=@"Score = 0";
         CGPoint location = CGPointMake (CGRectGetMidX(self.view.frame),CGRectGetMidY(self.view.frame));
-        [self createTimerWithDuration:10 position:location andSize:24.0];
+        [self createTimerWithDuration:120 position:location andSize:24.0];
     }
     return self;
 }
@@ -161,7 +161,22 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         [self egg:(SKSpriteNode *)firstBody.node didCollideWithBasket:(SKSpriteNode *)secondBody.node];
         [self keepScore:10];
         
-        if(scoreCount==50){
+        }
+    if(scoreCount==10){
+        GKAchievement *achievement =
+        [[GKAchievement alloc] initWithIdentifier: @"step1"];
+        achievement.showsCompletionBanner = YES;
+        achievement.percentComplete = 100;
+        NSArray *achievementsToComplete = [NSArray arrayWithObjects:achievement, nil];
+        [GKAchievement reportAchievements: achievementsToComplete withCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"Error in reporting achievements: %@", error);
+             }
+         }];
+        
+    }else if(scoreCount==250){
             spriteView.paused = YES;
             cut = [SKSpriteNode spriteNodeWithImageNamed:@"cutScene2.png"];
             cut.size =CGSizeMake(screenWidth, screenHeight);
@@ -172,7 +187,19 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
             start.position = CGPointMake(CGRectGetMidX(self.frame)+225, CGRectGetMidY(self.frame)- 225);
             start.name = @"Go";
             [self addChild:start];
-            
+            GKAchievement *achievement =
+            [[GKAchievement alloc] initWithIdentifier: @"halfWay"];
+            achievement.showsCompletionBanner = YES;
+            achievement.showsCompletionBanner = YES;
+            achievement.percentComplete = 100;
+            NSArray *achievementsToComplete = [NSArray arrayWithObjects:achievement, nil];
+            [GKAchievement reportAchievements: achievementsToComplete withCompletionHandler:^(NSError *error)
+             {
+                 if (error != nil)
+                 {
+                     NSLog(@"Error in reporting achievements: %@", error);
+                 }
+             }];
 
         }else if (countDownTimer == 0){
             spriteView.paused = YES;
@@ -185,7 +212,21 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
             start.position = CGPointMake(CGRectGetMidX(self.frame)+225, CGRectGetMidY(self.frame)- 225);
             start.name = @"Go2";
             [self addChild:start];
-        }else if(scoreCount==120){
+            GKAchievement *achievement =
+            [[GKAchievement alloc] initWithIdentifier: @"gameLoss"];
+            achievement.showsCompletionBanner = YES;
+            achievement.showsCompletionBanner = YES;
+            achievement.percentComplete = 100;
+            NSArray *achievementsToComplete = [NSArray arrayWithObjects:achievement, nil];
+            [GKAchievement reportAchievements: achievementsToComplete withCompletionHandler:^(NSError *error)
+             {
+                 if (error != nil)
+                 {
+                     NSLog(@"Error in reporting achievements: %@", error);
+                 }
+             }];
+            
+        }else if(scoreCount==500){
             spriteView.paused = YES;
             cutWin = [SKSpriteNode spriteNodeWithImageNamed:@"cutscene3.png"];
             cutWin.size =CGSizeMake(screenWidth, screenHeight);
@@ -196,9 +237,21 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
             start.position = CGPointMake(CGRectGetMidX(self.frame)+225, CGRectGetMidY(self.frame)- 225);
             start.name = @"Go3";
             [self addChild:start];
-        }
-        
-    }else {
+            GKAchievement *achievement =
+            [[GKAchievement alloc] initWithIdentifier: @"finishLine"];
+            achievement.showsCompletionBanner = YES;
+            achievement.showsCompletionBanner = YES;
+            achievement.percentComplete = 100;
+            NSArray *achievementsToComplete = [NSArray arrayWithObjects:achievement, nil];
+            [GKAchievement reportAchievements: achievementsToComplete withCompletionHandler:^(NSError *error)
+             {
+                 if (error != nil)
+                 {
+                     NSLog(@"Error in reporting achievements: %@", error);
+                 }
+             }];
+            
+        }else {
         
     }
     
@@ -281,9 +334,21 @@ static inline CGFloat randomBetween(CGFloat low, CGFloat high)
         spriteView.paused = NO;
         [self reportScores];
         [self gameOver];
-        
+        GKAchievement *achievement =
+        [[GKAchievement alloc] initWithIdentifier: @"win"];
+        achievement.showsCompletionBanner = YES;
+        achievement.percentComplete = 100;
+        NSArray *achievementsToComplete = [NSArray arrayWithObjects:achievement, nil];
+        [GKAchievement reportAchievements: achievementsToComplete withCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"Error in reporting achievements: %@", error);
+             }
+         }];
         
     }
+    
 }
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {

@@ -19,6 +19,9 @@
 -(id)initWithSize:(CGSize)size{
     
     
+    
+    
+    
     CGFloat screenWidth = [[UIScreen mainScreen] bounds].size.width;
     CGFloat screenHeight = [[UIScreen mainScreen] bounds].size.height;
     if (self = [super initWithSize:size]) {
@@ -53,6 +56,21 @@
     CGPoint location = [touch locationInNode:self];
     SKNode *node = [self nodeAtPoint:location];
     if ([node.name isEqualToString:@"Start"]) {
+        
+        GKAchievement *achievement =
+        [[GKAchievement alloc] initWithIdentifier: @"startAchievement"];
+        achievement.showsCompletionBanner = YES;
+        achievement.percentComplete = 100;
+        NSArray *achievementsToComplete = [NSArray arrayWithObjects:achievement, nil];
+        [GKAchievement reportAchievements: achievementsToComplete withCompletionHandler:^(NSError *error)
+         {
+             if (error != nil)
+             {
+                 NSLog(@"Error in reporting achievements: %@", error);
+             }
+         }];
+ 
+        
         SKScene *myScene = [[cutScene1 alloc] initWithSize:self.size];
         SKTransition *transition = [SKTransition flipVerticalWithDuration:0.5];
         [self.view presentScene:myScene transition:transition];
