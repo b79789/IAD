@@ -11,7 +11,11 @@
 #import "GameOverScene.h"
 #import "Splash.h"
 
+
+
 @implementation SKScene (Unarchive)
+
+
 
 + (instancetype)unarchiveFromFile:(NSString *)file {
     /* Retrieve scene file path from the application bundle */
@@ -30,7 +34,11 @@
 
 @end
 
+
+
 @implementation GameViewController
+
+
 
 - (void)viewWillLayoutSubviews
 {
@@ -59,8 +67,10 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
+    
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         return UIInterfaceOrientationMaskAllButUpsideDown;
     } else {
@@ -77,5 +87,6 @@
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
 
 @end
